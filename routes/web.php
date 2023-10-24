@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(User::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/detail/{id_user}', 'detail');
+    Route::get('/delete/{id_user}', 'delete');
+    Route::post('/add', 'add');
+    Route::put('/edit', 'edit');
+    Route::post('/findStates', 'findStates');
+    Route::get('/filter/{id_area}', 'filter');
 });
